@@ -61,9 +61,6 @@ define([
         // Add new customer
         self.addCustomer = function () {
             var newCustomer = {
-                customerId: self.customerId(),
-                userId: self.userId(),
-                cifNumber: self.cifNumber(),
                 firstName: self.firstName(),
                 lastName: self.lastName(),
                 dateOfBirth: self.dateOfBirth(),
@@ -77,47 +74,22 @@ define([
                 state: self.state(),
                 postalCode: self.postalCode(),
                 country: self.country()
-
             };
+
             self.collection.create(newCustomer, {
                 wait: true,
-                success: function () {
-                    alert(self.firstName() + " registered successfully");
+                success: function (model) {
+                    alert(self.firstName() + " registered successfully. CIF: " + model.get('cifNumber'));
                     self.dataProvider(new CollectionDataProvider(self.collection));
                     self.closeAddDialog();
                     self.clearCustomerForm();
                 },
                 error: function (model, xhr) {
-                    alert("Error registering customer: " + xhr.statusText);
+                    alert("Error registering customer: " + (xhr.statusText || "Unknown error"));
                 }
             });
         };
 
-
-        // // Edit visitor
-        // self.editCustomer = function (row) {
-        //     var model = self.collection.get(row.customerId);
-        //     if (model) {
-        //         model.save({
-        //             userId: self.userId(),
-        //             cifNumber: self.cifNumber(),
-        //             firstName: self.firstName(),
-        //             lastName: self.lastName(),
-        //             dateOfBirth: self.dateOfBirth(),
-        //             gender: self.gender(),
-        //             phoneNumber: self.phoneNumber(),
-        //             nationality: self.nationality(),
-        //             customerType: self.customerType(),
-        //             email: self.email(),
-        //             address: self.address(),
-        //             city: self.city(),
-        //             state: self.state(),
-        //             postalCode: self.postalCode(),
-        //             country: self.country()
-        //         }, { wait: true });
-        //         document.getElementById("editDialog").close();
-        //     }
-        // };
 
         self.openEditDialog = function (row) {
             self.customerId(row.customerId);
