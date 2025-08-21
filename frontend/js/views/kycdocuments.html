@@ -1,0 +1,63 @@
+<h1 class="oj-typography-heading-lg oj-sm-margin-4x-bottom">KYC Document Management</h1>
+
+<!-- KYC Form -->
+<div class="oj-flex oj-sm-margin-4x-bottom oj-sm-padding-4x oj-bg-neutral-0 oj-sm-border-radius oj-panel-shadow-sm">
+
+<div class="oj-flex-item oj-sm-12 oj-md-6 oj-sm-padding-2x">
+  <oj-label for="cifNumber">CIF Number</oj-label>
+  <oj-input-text id="cifNumber" value="{{cifNumber}}"></oj-input-text>
+</div>
+
+
+  <div class="oj-flex-item oj-sm-12 oj-md-6 oj-sm-padding-2x">
+    <oj-label for="documentType">Document Type</oj-label>
+    <oj-select-single id="documentType" 
+                      value="{{documentType}}" 
+                      data="[[documentTypeDataProvider]]"
+                      placeholder="Select Document Type">
+    </oj-select-single>
+  </div>
+
+  <div class="oj-flex-item oj-sm-12 oj-md-6 oj-sm-padding-2x">
+    <oj-label for="documentNumber">Document Number</oj-label>
+    <oj-input-text id="documentNumber" value="{{documentNumber}}"></oj-input-text>
+  </div>
+
+  <!-- <div class="oj-flex-item oj-sm-12 oj-md-6 oj-sm-padding-2x">
+    <oj-label for="verificationStatus">Verification Status</oj-label>
+    <oj-select-single id="verificationStatus"
+                      value="{{verificationStatus}}"
+                      data="[[verificationStatusDataProvider]]"
+                      placeholder="Select Status">
+    </oj-select-single>
+  </div> -->
+
+  <!-- <div class="oj-flex-item oj-sm-12 oj-md-6 oj-sm-padding-2x">
+    <oj-label for="verifiedAt">Verified At</oj-label>
+    <oj-input-date-time id="verifiedAt" value="{{verifiedAt}}"></oj-input-date-time>
+  </div> -->
+
+  <div class="oj-flex-item oj-sm-12 oj-sm-padding-2x oj-sm-margin-top">
+    <oj-button chroming="callToAction" on-oj-action="[[addKycDocument]]">
+      Add Document
+    </oj-button>
+  </div>
+
+</div>
+
+<!-- KYC Table -->
+<div class="oj-sm-margin-4x-top oj-bg-neutral-0 oj-sm-border-radius oj-panel-shadow-sm oj-sm-padding-3x">
+  <h2 class="oj-typography-heading-md oj-sm-margin-2x-bottom">KYC Documents List</h2>
+  
+  <oj-table 
+  data="[[kycDataProvider]]"
+  columns='[
+    {"headerText": "KYC ID", "field": "id"},
+    {"headerText": "CIF Number", "field": "customer.cifNumber"},
+    {"headerText": "Document Type", "field": "documentType"},
+    {"headerText": "Document Number", "field": "documentNumber"},
+    {"headerText": "Verification Status", "field": "verificationStatus"},
+    {"headerText": "Verified At", "field": "verifiedAt"}
+  ]'>
+</oj-table>
+</div>

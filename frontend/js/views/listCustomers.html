@@ -1,0 +1,89 @@
+<h2>Customer display</h2>
+<oj-table id="customerTable" data="[[dataProvider]]" columns='[
+    {"headerText": "Customer ID", "field": "customerId"},
+    {"headerText": "User ID", "field": "userId"},
+    {"headerText": "CIF Number", "field": "cifNumber"},
+    {"headerText": "First Name", "field": "firstName"},
+    {"headerText": "Last Name", "field": "lastName"},
+    {"headerText": "DOB", "field": "dateOfBirth"},
+    {"headerText": "Gender", "field": "gender"},
+    {"headerText": "Phone", "field": "phoneNumber"},
+    {"headerText": "Type", "field": "customerType"},
+    {"headerText": "Email", "field": "email"},
+    {"headerText": "Address", "field": "address"},
+    {"headerText": "City", "field": "city"},
+    {"headerText": "State", "field": "state"},
+    {"headerText": "Postal Code", "field": "postalCode"},
+    {"headerText": "Country", "field": "country"},
+    {"headerText": "Actions", "template": "actionTemplate"}
+    ]'>
+
+  <!-- Template for Actions column -->
+  <template slot="actionTemplate" data-oj-as="cell">
+    <oj-button on-oj-action="[[() => openEditDialog(cell.item.data)]]">Edit</oj-button>
+    &ensp;
+    <oj-button chroming="danger" display="icons" on-oj-action="[[() => deleteCustomer(cell.item.data)]]">
+      Delete
+    </oj-button>
+  </template>
+
+</oj-table>
+<br />
+
+
+<oj-dialog id="addDialog" dialog-title="Add Customer">
+  <div slot="body">
+    <oj-form-layout>
+      <oj-input-text label-hint="Customer ID" value="{{customerId}}"></oj-input-text>
+      <oj-input-text label-hint="User ID" value="{{userId}}"></oj-input-text>
+      <oj-input-text label-hint="CIF Number" value="{{cifNumber}}"></oj-input-text>
+      <oj-input-text label-hint="First Name" value="{{firstName}}"></oj-input-text>
+      <oj-input-text label-hint="Last Name" value="{{lastName}}"></oj-input-text>
+      <oj-input-text label-hint="Date of Birth" value="{{dateOfBirth}}"></oj-input-text>
+      <oj-input-text label-hint="Gender" value="{{gender}}"></oj-input-text>
+      <oj-input-text label-hint="Phone Number" value="{{phoneNumber}}"></oj-input-text>
+      <oj-input-text label-hint="Nationality" value="{{nationality}}"></oj-input-text>
+      <oj-input-text label-hint="Customer Type" value="{{customerType}}"></oj-input-text>
+      <oj-input-text label-hint="Email" value="{{email}}"></oj-input-text>
+      <oj-input-text label-hint="Address" value="{{address}}"></oj-input-text>
+      <oj-input-text label-hint="City" value="{{city}}"></oj-input-text>
+      <oj-input-text label-hint="State" value="{{state}}"></oj-input-text>
+      <oj-input-text label-hint="Postal Code" value="{{postalCode}}"></oj-input-text>
+      <oj-input-text label-hint="Country" value="{{country}}"></oj-input-text>
+    </oj-form-layout>
+  </div>
+  <div slot="footer">
+    <oj-button on-oj-action="[[addCustomer]]">Save</oj-button>
+    <oj-button on-oj-action="[[closeAddDialog]]">Cancel</oj-button>
+  </div>
+</oj-dialog>
+
+<oj-dialog id="editDialog" dialog-title="Edit Customer">
+  <div slot="body">
+    <oj-form-layout>
+      <oj-input-text label-hint="Customer ID" value="{{customerId}}"></oj-input-text>
+      <oj-input-text label-hint="User ID" value="{{userId}}"></oj-input-text>
+      <oj-input-text label-hint="CIF Number" value="{{cifNumber}}"></oj-input-text>
+      <oj-input-text label-hint="First Name" value="{{firstName}}"></oj-input-text>
+      <oj-input-text label-hint="Last Name" value="{{lastName}}"></oj-input-text>
+      <oj-input-text label-hint="Date of Birth" value="{{dateOfBirth}}"></oj-input-text>
+      <oj-input-text label-hint="Gender" value="{{gender}}"></oj-input-text>
+      <oj-input-text label-hint="Phone Number" value="{{phoneNumber}}"></oj-input-text>
+      <oj-input-text label-hint="Nationality" value="{{nationality}}"></oj-input-text>
+      <oj-input-text label-hint="Customer Type" value="{{customerType}}"></oj-input-text>
+      <oj-input-text label-hint="Email" value="{{email}}"></oj-input-text>
+      <oj-input-text label-hint="Address" value="{{address}}"></oj-input-text>
+      <oj-input-text label-hint="City" value="{{city}}"></oj-input-text>
+      <oj-input-text label-hint="State" value="{{state}}"></oj-input-text>
+      <oj-input-text label-hint="Postal Code" value="{{postalCode}}"></oj-input-text>
+      <oj-input-text label-hint="Country" value="{{country}}"></oj-input-text>
+    </oj-form-layout>
+  </div>
+  <div slot="footer">
+    <oj-button on-oj-action="[[updateCustomer]]">Update</oj-button>
+    <oj-button on-oj-action="[[closeEditDialog]]">Cancel</oj-button>
+  </div>
+</oj-dialog>
+
+<br><br>
+<oj-button on-oj-action="[[openAddDialog]]">Add Customer</oj-button>

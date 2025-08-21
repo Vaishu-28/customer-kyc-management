@@ -1,0 +1,97 @@
+<h1 class="oj-typography-heading-lg oj-sm-margin-4x-bottom">Customer Management</h1>
+
+<oj-validation-group id="customerForm" on-oj-valid-changed="[[groupValidChanged]]">
+  <div class="oj-flex oj-sm-margin-4x-bottom oj-sm-padding-4x oj-bg-neutral-0 oj-sm-border-radius oj-panel-shadow-sm">
+
+    <div class="oj-flex-item oj-sm-12 oj-md-6 oj-sm-padding-2x">
+      <oj-label for="firstName">First Name</oj-label>
+      <oj-input-text id="firstName" value="{{firstName}}" required validators="[[firstNameValidators]]"></oj-input-text>
+    </div>
+
+    <div class="oj-flex-item oj-sm-12 oj-md-6 oj-sm-padding-2x">
+      <oj-label for="lastName">Last Name</oj-label>
+      <oj-input-text id="lastName" value="{{lastName}}" required validators="[[lastNameValidators]]"></oj-input-text>
+    </div>
+
+    <div class="oj-flex-item oj-sm-12 oj-md-6 oj-sm-padding-2x">
+      <oj-label for="dob">Date of Birth</oj-label>
+      <oj-input-date id="dob" value="{{dateOfBirth}}" required></oj-input-date>
+    </div>
+
+    <div class="oj-flex-item oj-sm-12 oj-md-6 oj-sm-padding-2x">
+      <oj-label for="gender">Gender</oj-label>
+      <oj-select-single id="gender" value="{{gender}}" data="[[genderDataProvider]]" required></oj-select-single>
+    </div>
+
+    <div class="oj-flex-item oj-sm-12 oj-md-6 oj-sm-padding-2x">
+      <oj-label for="phone">Phone Number</oj-label>
+      <oj-input-text id="phone" value="{{phoneNumber}}" required validators="[[phoneValidators]]"></oj-input-text>
+    </div>
+
+    <div class="oj-flex-item oj-sm-12 oj-md-6 oj-sm-padding-2x">
+      <oj-label for="email">Email</oj-label>
+      <oj-input-text id="email" value="{{email}}" required validators="[[emailValidators]]"></oj-input-text>
+    </div>
+
+    <div class="oj-flex-item oj-sm-12 oj-md-6 oj-sm-padding-2x">
+      <oj-label for="nationality">Nationality</oj-label>
+      <oj-input-text id="nationality" value="{{nationality}}" required></oj-input-text>
+    </div>
+
+    <div class="oj-flex-item oj-sm-12 oj-md-6 oj-sm-padding-2x">
+      <oj-label for="ctype">Customer Type</oj-label>
+      <oj-input-text id="ctype" value="{{customerType}}" required></oj-input-text>
+    </div>
+
+    <div class="oj-flex-item oj-sm-12 oj-md-6 oj-sm-padding-2x">
+      <oj-label for="address">Address</oj-label>
+      <oj-input-text id="address" value="{{address}}" required></oj-input-text>
+    </div>
+
+    <div class="oj-flex-item oj-sm-12 oj-md-6 oj-sm-padding-2x">
+      <oj-label for="city">City</oj-label>
+      <oj-input-text id="city" value="{{city}}" required></oj-input-text>
+    </div>
+
+    <div class="oj-flex-item oj-sm-12 oj-md-6 oj-sm-padding-2x">
+      <oj-label for="state">State</oj-label>
+      <oj-input-text id="state" value="{{state}}" required></oj-input-text>
+    </div>
+
+    <div class="oj-flex-item oj-sm-12 oj-md-6 oj-sm-padding-2x">
+      <oj-label for="postal">Postal Code</oj-label>
+      <oj-input-text id="postal" value="{{postalCode}}" required></oj-input-text>
+    </div>
+
+    <div class="oj-flex-item oj-sm-12 oj-md-6 oj-sm-padding-2x">
+      <oj-label for="country">Country</oj-label>
+      <oj-input-text id="country" value="{{country}}" required></oj-input-text>
+    </div>
+
+    <div class="oj-flex-item oj-sm-12 oj-sm-padding-2x oj-sm-margin-top">
+      <oj-button chroming="callToAction" on-oj-action="[[addCustomer]]" >
+        Add Customer
+      </oj-button>
+    </div>
+
+  </div>
+</oj-validation-group>
+
+<div class="oj-sm-margin-4x-top oj-bg-neutral-0 oj-sm-border-radius oj-panel-shadow-sm oj-sm-padding-3x">
+  <h2 class="oj-typography-heading-md oj-sm-margin-2x-bottom">Customer List</h2>
+  <oj-table 
+    display="grid"
+    banding-interval="row"
+    class="oj-sm-padding-2x"
+    data="[[customerDataProvider]]"
+    columns='[
+      {"headerText": "ID", "field": "customerId"},
+      {"headerText": "First Name", "field": "firstName"},
+      {"headerText": "Last Name", "field": "lastName"},
+      {"headerText": "Email", "field": "email"},
+      {"headerText": "Phone", "field": "phoneNumber"},
+      {"headerText": "City", "field": "city"},
+      {"headerText": "Country", "field": "country"}
+    ]'>
+  </oj-table>
+</div>

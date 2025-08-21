@@ -1,0 +1,26 @@
+<!-- CIF Number search input and button -->
+<oj-form-layout>
+    <oj-input-text label-hint="CIF Number" value="{{cifNumberToSearch}}"></oj-input-text>
+    <oj-button on-oj-action="[[getCustomerByCif]]">Find Customer</oj-button>
+</oj-form-layout>
+
+<!-- Show customer details if found -->
+<div data-bind="if: foundCustomer">
+    <h3>Customer Details</h3>
+
+    <div>First Name: <span data-bind="text: foundCustomer().firstName"></span></div>
+    <div>Last Name: <span data-bind="text: foundCustomer().lastName"></span></div>
+    <div>Date of Birth: <span data-bind="text: foundCustomer().dateOfBirth"></span></div>
+    <div>Gender: <span data-bind="text: foundCustomer().gender"></span></div>
+    <div>Phone Number: <span data-bind="text: foundCustomer().phoneNumber"></span></div>
+    <div>Nationality: <span data-bind="text: foundCustomer().nationality"></span></div>
+    <div>Customer Type: <span data-bind="text: foundCustomer().customerType"></span></div>
+    <div>Email: <span data-bind="text: foundCustomer().email"></span></div>
+    <div>Address: <span data-bind="text: foundCustomer().address"></span></div>
+    <div>City: <span data-bind="text: foundCustomer().city"></span></div>
+    <div>State: <span data-bind="text: foundCustomer().state"></span></div>
+    <div>Postal Code: <span data-bind="text: foundCustomer().postalCode"></span></div>
+    <div>Country: <span data-bind="text: foundCustomer().country"></span></div>
+
+
+</div>
