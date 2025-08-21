@@ -1,7 +1,7 @@
-<h2>Customer display</h2>
+<h2>Customer List</h2>
+
 <oj-table id="customerTable" data="[[dataProvider]]" columns='[
     {"headerText": "Customer ID", "field": "customerId"},
-    {"headerText": "User ID", "field": "userId"},
     {"headerText": "CIF Number", "field": "cifNumber"},
     {"headerText": "First Name", "field": "firstName"},
     {"headerText": "Last Name", "field": "lastName"},
@@ -16,9 +16,7 @@
     {"headerText": "Postal Code", "field": "postalCode"},
     {"headerText": "Country", "field": "country"},
     {"headerText": "Actions", "template": "actionTemplate"}
-    ]'>
-
-  <!-- Template for Actions column -->
+]'>
   <template slot="actionTemplate" data-oj-as="cell">
     <oj-button on-oj-action="[[() => openEditDialog(cell.item.data)]]">Edit</oj-button>
     &ensp;
@@ -26,21 +24,16 @@
       Delete
     </oj-button>
   </template>
-
 </oj-table>
-<br />
 
-
+<!-- Add Customer Dialog -->
 <oj-dialog id="addDialog" dialog-title="Add Customer">
   <div slot="body">
     <oj-form-layout>
-      <oj-input-text label-hint="Customer ID" value="{{customerId}}"></oj-input-text>
-      <oj-input-text label-hint="User ID" value="{{userId}}"></oj-input-text>
-      <oj-input-text label-hint="CIF Number" value="{{cifNumber}}"></oj-input-text>
       <oj-input-text label-hint="First Name" value="{{firstName}}"></oj-input-text>
       <oj-input-text label-hint="Last Name" value="{{lastName}}"></oj-input-text>
-      <oj-input-text label-hint="Date of Birth" value="{{dateOfBirth}}"></oj-input-text>
-      <oj-input-text label-hint="Gender" value="{{gender}}"></oj-input-text>
+      <oj-input-date label-hint="Date of Birth" value="{{dateOfBirth}}"></oj-input-date>
+      <oj-select-single label-hint="Gender" value="{{gender}}" data="[[genderDataProvider]]"></oj-select-single>
       <oj-input-text label-hint="Phone Number" value="{{phoneNumber}}"></oj-input-text>
       <oj-input-text label-hint="Nationality" value="{{nationality}}"></oj-input-text>
       <oj-input-text label-hint="Customer Type" value="{{customerType}}"></oj-input-text>
@@ -58,16 +51,14 @@
   </div>
 </oj-dialog>
 
+<!-- Edit Customer Dialog -->
 <oj-dialog id="editDialog" dialog-title="Edit Customer">
   <div slot="body">
     <oj-form-layout>
-      <oj-input-text label-hint="Customer ID" value="{{customerId}}"></oj-input-text>
-      <oj-input-text label-hint="User ID" value="{{userId}}"></oj-input-text>
-      <oj-input-text label-hint="CIF Number" value="{{cifNumber}}"></oj-input-text>
       <oj-input-text label-hint="First Name" value="{{firstName}}"></oj-input-text>
       <oj-input-text label-hint="Last Name" value="{{lastName}}"></oj-input-text>
-      <oj-input-text label-hint="Date of Birth" value="{{dateOfBirth}}"></oj-input-text>
-      <oj-input-text label-hint="Gender" value="{{gender}}"></oj-input-text>
+      <oj-input-date label-hint="Date of Birth" value="{{dateOfBirth}}"></oj-input-date>
+      <oj-select-single label-hint="Gender" value="{{gender}}" data="[[genderDataProvider]]"></oj-select-single>
       <oj-input-text label-hint="Phone Number" value="{{phoneNumber}}"></oj-input-text>
       <oj-input-text label-hint="Nationality" value="{{nationality}}"></oj-input-text>
       <oj-input-text label-hint="Customer Type" value="{{customerType}}"></oj-input-text>
