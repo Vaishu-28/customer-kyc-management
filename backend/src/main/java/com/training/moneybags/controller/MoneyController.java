@@ -1,5 +1,7 @@
 package com.training.moneybags.controller;
 
+import com.training.moneybags.dtos.UserCreateRequest;
+import com.training.moneybags.dtos.UserResponse;
 import com.training.moneybags.model.Customer;
 import com.training.moneybags.model.KycDocument;
 import com.training.moneybags.model.VerificationRequest;
@@ -9,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.reactive.function.client.WebClient;
 
 import java.net.URI;
 import java.time.LocalDateTime;
@@ -22,6 +25,8 @@ public class MoneyController {
 
     @Autowired
     private MoneyService moneyservice;
+    @Autowired
+    private WebClient userWebClient;
 
     //---------------------CUSTOMER------------------
 
@@ -34,6 +39,19 @@ public class MoneyController {
                     .body("Customer with CIF number already exists: " + customer.getCifNumber());
         }
 
+        UserResponse userResponse = userWebClient.post()
+                .uri("register")
+                .bodyValue(new UserCreateRequest(
+                    customer.getFirstName().toLowerCase() + "." + customer.getLastName().toLowerCase(),
+                    "test",
+                    List.of("CUSTOMER")
+                )
+        )
+                .retrieve()
+                .bodyToMono(UserResponse.class)
+                .block();
+
+        customer.setUserId(userResponse.id());
         Customer saved = moneyservice.saveCustomer(customer);
         return ResponseEntity
                 .created(URI.create("/customers/" + saved.getCustomerId()))

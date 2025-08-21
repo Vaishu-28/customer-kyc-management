@@ -11,7 +11,7 @@ public class Customer {
     private String customerId;
 
     @Column(name = "USER_ID")
-    private int userId;
+    private Long userId;
 
     @Column(name = "CIF_NUMBER", nullable = false, unique = true)
     private String cifNumber;
@@ -76,11 +76,11 @@ public class Customer {
         this.customerId = customerId;
     }
 
-    public int getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
