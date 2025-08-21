@@ -9,9 +9,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Random;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @Repository
 public class MoneyDAOImpl implements MoneyDAO {
+
+    private final Random random = new Random();
+    private final AtomicInteger counter = new AtomicInteger(1);
 
     @Autowired
     private CustomerRepository customerRepository;
@@ -19,8 +24,24 @@ public class MoneyDAOImpl implements MoneyDAO {
     @Autowired
     private KycDocumentRepository kycDocumentRepository;
 
+    private String generateUniqueCif() {
+        String cif = "";
+        Customer exists;
+        boolean result = true;
+
+        while(result) {
+            cif = String.format("%07d", random.nextInt(10_000_000)); // 7-digit number
+            exists = customerRepository.findByCifNumber(cif);
+            result = false;
+        }
+        return cif;
+    }
+
     @Override
     public Customer saveCustomer(Customer customer) {
+        customer.setCustomerId("CUST" + String.format("%03d", counter.getAndIncrement()));
+        String cif = generateUniqueCif();
+        customer.setCifNumber(cif);
         return customerRepository.save(customer);
     }
 
